@@ -1,0 +1,3 @@
+ldc_set_location -site {39} [get_ports green]
+ldc_set_location -site {41} [get_ports red]
+ldc_set_location -site {40} [get_ports blue]
