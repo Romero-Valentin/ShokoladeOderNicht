@@ -20,7 +20,8 @@ entity top is
     port(
 		red     : out std_logic;
 		green   : out std_logic;
-		blue    : out std_logic
+		blue    : out std_logic;
+		gpio_23 : out std_logic
     );
 end top;
 
@@ -63,6 +64,13 @@ begin
 		clock_48M => clock_48M
 	);
 	
+	servo_handler : entity work.servo_handler
+	generic map ( G_CLOCK_FREQ_KHZ => 10 )
+	port map (
+		-- Clock
+		clock     => clock_10k,
+		servo_ctl => gpio_23
+	);
 	
 	led0_en <= count(25) and count(24);
 	led1_en <= count(25) and not count(24);

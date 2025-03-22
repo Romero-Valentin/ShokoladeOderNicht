@@ -1,3 +1,11 @@
+# RGB LED
 ldc_set_location -site {39} [get_ports green]
 ldc_set_location -site {41} [get_ports red]
 ldc_set_location -site {40} [get_ports blue]
+
+ldc_set_location -site {23} [get_ports gpio_23]
+
+# FTDI Chip
+# ldc_set_location -site {14} [get_ports serial_txd]
+# ldc_set_location -site {15} [get_ports serial_rxd]
+# ldc_set_location -site {16} [get_ports flash_spi_cs] # must be high unless spi flash used

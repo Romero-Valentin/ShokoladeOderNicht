@@ -68,9 +68,9 @@ signal s_red_pwm 			: std_logic;
 ---------------------------------------
 begin
 
-	s_green_pwm <= red_en 	when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
-	s_blue_pwm 	<= green_en when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
-	s_red_pwm 	<= blue_en 	when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
+	s_green_pwm <= green_en when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
+	s_blue_pwm 	<= blue_en  when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
+	s_red_pwm 	<= red_en   when s_intensity_counter >= G_INTENSITY_DIVIDER else '0';
 
 	-- Use a counter to PWM the LEDs with a duty cycle of 1/G_INTENSITY_DIVIDER
 	counter_proc: process(clock)
