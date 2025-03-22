@@ -1,3 +1,10 @@
+-------------------------------------------------
+-- Designer      : Valentin Romero
+-- Creation date : 15/03/2025
+--
+-- 
+-------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -19,19 +26,24 @@ end top;
 
 architecture synth of top is
 
-signal clock      : std_logic;
+signal clock_48M  	: std_logic;
+signal clock_10k 	: std_logic;
 --signal reset      : std_logic;
-signal count:   unsigned(25 downto 0);
-signal led0_en: std_logic;
-signal led1_en: std_logic;
-signal led2_en: std_logic;
+signal count		: unsigned(25 downto 0);
+signal led0_en		: std_logic;
+signal led1_en		: std_logic;
+signal led2_en		: std_logic;
 
 begin
 
-    u0 : entity work.led_handler
-    port map (
+	led_handler : entity work.led_handler
+	generic map ( G_INTENSITY_DIVIDER => 16 )
+	port map (
+		-- Clock
+		clock    => clock_10k,
+	
 		-- Power input
-	    power_en => '1', -- Takes 100us to stabilize
+		power_en => '1', -- Takes 100us to stabilize
 		
 		-- PWN input
 		red_en   => led0_en,
@@ -42,25 +54,25 @@ begin
 		red     => red,
 		green   => green,
 		blue    => blue
-    );
-	
-	
-	u1 : entity work.clock_handler
-    port map (
-		clock_10k => open,
-		clock_48M => clock
-    );
+	);
+
+
+	clock_handler : entity work.clock_handler
+	port map (
+		clock_10k => clock_10k,
+		clock_48M => clock_48M
+	);
 	
 	
 	led0_en <= count(25) and count(24);
-    led1_en <= count(25) and not count(24);
-    led2_en <= not count(25) and count(24);
+	led1_en <= count(25) and not count(24);
+	led2_en <= not count(25) and count(24);
 
-    count_proc: process(clock)
-    begin
-        if rising_edge(clock) then
-            count <= count+1;
-        end if;
-    end process;
+	count_proc: process(clock_48M)
+	begin
+		if rising_edge(clock_48M) then
+			count <= count+1;
+		end if;
+	end process;
 
 end;

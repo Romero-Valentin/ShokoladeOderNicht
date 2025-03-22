@@ -17,9 +17,8 @@
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<File>../../impl_1/Testing_1_impl_1.bin</File>
-			<FileTime>03/14/25 23:15:13</FileTime>
-			<JedecChecksum>0xDD9F</JedecChecksum>
+			<File>../../build/impl_1/shokolade_oder_night_impl_1.bin</File>
+			<FileTime>03/22/25 19:18:18</FileTime>
 			<MemoryType>External SPI Flash Memory (SPI FLASH)</MemoryType>
 			<Operation>Erase,Program,Verify</Operation>
 			<Option>
@@ -63,7 +62,7 @@
 					<IDCode>0x15</IDCode>
 					<Package>208mil 8-pin SOIC</Package>
 					<Operation>Erase,Program,Verify</Operation>
-					<File>../../impl_1/Testing_1_impl_1.bin</File>
+					<File>../../build/impl_1/shokolade_oder_night_impl_1.bin</File>
 					<AddressBase>0x00000000</AddressBase>
 					<EndAddress>0x00010000</EndAddress>
 					<DeviceSize>32</DeviceSize>

@@ -8,7 +8,8 @@ prj_add_source "../hdl_src/top_level.vhd"
 prj_set_impl_opt -impl "impl_1" {top} {top}
 
 # Add constraint sources
-prj_add_source "../constraint_src/constraint.pdc"
+prj_add_source "../constraint_src/timing_constraint.sdc"
+prj_add_source "../constraint_src/pin_constraint.pdc"
 
 # Add programming configuration source
 prj_add_source "../lattice_src/programmer_configuration.xcf"

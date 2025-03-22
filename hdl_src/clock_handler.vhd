@@ -1,6 +1,8 @@
 -------------------------------------------------
 -- Designer      : Valentin Romero
 -- Creation date : 15/03/2025
+--
+-- This module takes advantages of the two internal oscillators to generate a 10kHz and a 48MHz clock.
 -------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -47,17 +49,17 @@ begin
         CLKHF_DIV => C_CLOCK_48MHz
     )
     port map (
-	    CLKHFPU   => '1', -- Power up the oscillator, stable after 100us
+		CLKHFPU   => '1', -- Power up the oscillator, stable after 100us
 		CLKHFEN   => '1', -- Enable clock output
-        CLKHF     => clock_48M
+		CLKHF     => clock_48M
     );
 	
 	-- Low frequency on-chip oscillator
     clock_lf : LSOSC
     port map (
-	    CLKLFPU   => '1', -- Power up the oscillator, stable after 100us
+		CLKLFPU   => '1', -- Power up the oscillator, stable after 100us
 		CLKLFEN   => '1', -- Enable clock output
-        CLKLF     => clock_10k
+		CLKLF     => clock_10k
     );
 
 end;
