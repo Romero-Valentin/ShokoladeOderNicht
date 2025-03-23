@@ -35,6 +35,9 @@ signal led0_en		: std_logic;
 signal led1_en		: std_logic;
 signal led2_en		: std_logic;
 
+signal s_angle_index  : integer range 0 to 5-1;
+signal s_turn_counter : integer range 0 to 20000;
+
 begin
 
 	led_handler : entity work.led_handler
@@ -68,18 +71,33 @@ begin
 	generic map ( G_CLOCK_FREQ_KHZ => 10 )
 	port map (
 		-- Clock
-		clock     => clock_10k,
-		servo_ctl => gpio_23
+		clock       => clock_10k,
+		angle_index => s_angle_index,
+		servo_ctl   => gpio_23
 	);
 	
 	led0_en <= count(25) and count(24);
 	led1_en <= count(25) and not count(24);
 	led2_en <= not count(25) and count(24);
 
+	
+
 	count_proc: process(clock_48M)
 	begin
 		if rising_edge(clock_48M) then
 			count <= count+1;
+		end if;
+	end process;
+
+	angle_index_proc : process(clock_10k)
+	begin
+		if rising_edge(clock_10k) then		
+			if( s_turn_counter >= 20000 ) then	s_turn_counter <= 0; 					
+				if( s_angle_index >= 4 ) then	s_angle_index <= 0;
+				else							s_angle_index <= s_angle_index + 1;
+				end if;
+			else								s_turn_counter <= s_turn_counter + 1;
+			end if;          
 		end if;
 	end process;
 
