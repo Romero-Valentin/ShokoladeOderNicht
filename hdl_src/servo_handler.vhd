@@ -34,8 +34,8 @@ architecture synth of servo_handler is
 ---------------------------------------
 constant C_CLOCK_PERIOD_US      : positive := 100;--1000 * 1/G_CLOCK_FREQ_KHZ;
 constant C_PWM_PERIOD_US        : positive := (1000 * 20) / C_CLOCK_PERIOD_US;
-constant C_DUTY_PERIOD_MIN_US   : positive := (1000 * 1)  / C_CLOCK_PERIOD_US;
-constant C_DUTY_PERIOD_MAX_US   : positive := (1000 * 2)  / C_CLOCK_PERIOD_US;
+constant C_DUTY_PERIOD_MIN_US   : positive := (100  * 5)  / C_CLOCK_PERIOD_US;
+constant C_DUTY_PERIOD_MAX_US   : positive := (100  * 25)  / C_CLOCK_PERIOD_US;
 ---------------------------------------
 --            SIGNALS                --
 ---------------------------------------
